@@ -27,9 +27,9 @@ export default function useApi<T>(params: Params) {
 
     const url = callParams?.url || params.url;
     const headers = callParams?.headers || params.headers;
+    const credentials: RequestCredentials = "include"
     let body = callParams?.payload;
     let method = params.method;
-    const credentials: RequestCredentials = "include"
 
     if (headers?.["Content-Type"] === "application/json")
       body = JSON.stringify(body);
