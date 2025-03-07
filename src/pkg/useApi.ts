@@ -21,7 +21,6 @@ export default function useApi<T>(params: Params) {
   // Is there an ongoing request?:
   const [inFlight, setInFlight] = React.useState(false);
 
-
   const call = async (callParams?: CallParams) => {
     setInFlight(true);
     const result: CallResult<T> = { resp: null, error: null, fault: null };
@@ -63,15 +62,13 @@ export default function useApi<T>(params: Params) {
       setResp(result.resp);
       setError(result.error);
       setFault(result.fault);
-      // pushes setInFlight(false) to the task queue, making sure it gets executed after
-      // callstack is empty with minimum possible delay
-      setTimeout(() => {
-        setInFlight(false);
-      }, 0);
+      // Reset inFlight in the next tick:
+      setTimeout(() => setInFlight(false), 0);
     }
 
     return result;
   }
+
   return {
     RESP,
     inFlight,
