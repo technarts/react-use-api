@@ -27,6 +27,7 @@ export default function useApi<T>(params: Params) {
 
     const url = callParams?.url || params.url;
     const headers = callParams?.headers || params.headers;
+    const credentials: RequestCredentials = "include"
     let body = callParams?.payload;
     let method = params.method;
 
@@ -40,7 +41,7 @@ export default function useApi<T>(params: Params) {
     else if (method === "DOWNLOAD" && !body)
       method = "GET";
 
-    const options = { method, headers, body };
+    const options = { method, headers, body, credentials };
 
     try {
       const response = await fetch(url, options)

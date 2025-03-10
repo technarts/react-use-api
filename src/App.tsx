@@ -68,9 +68,9 @@ function App() {
           <b>RESP:</b> <br/>
           <code>{apiGetter?.RESP ? JSON.stringify(apiGetter?.RESP) : ''}</code> <br/>
           <b>error:</b>
-          <code>{apiGetter?.RESP ? JSON.stringify(apiGetter?.error) : ''}</code> <br/>
+          <code>{apiGetter?.error ? JSON.stringify(apiGetter?.error) : ''}</code> <br/>
           <b>fault:</b>
-          <code>{apiGetter?.RESP ? JSON.stringify(apiGetter?.fault) : ''}</code> <br/>
+          <code>{apiGetter?.fault ? JSON.stringify(apiGetter?.fault) : ''}</code> <br/>
           <b>inFlight:</b>
           <code>{JSON.stringify(apiGetter?.inFlight)}</code> <br/>
           <b>url:</b>
@@ -92,11 +92,11 @@ function App() {
         </button>
         <div className={"output-section"}>
           <b>RESP:</b> <br/>
-          <code>{resultResponse?.[0] ?JSON.stringify(resultResponse?.[0]) : ""}</code> <br/>
+          <code>{resultResponse?.resp ?JSON.stringify(resultResponse?.resp) : ""}</code> <br/>
           <b>error:</b>
-          <code>{resultResponse?.[1] ?JSON.stringify(resultResponse?.[1]) : ""}</code> <br/>
+          <code>{resultResponse?.error ?JSON.stringify(resultResponse?.error) : ""}</code> <br/>
           <b>fault:</b>
-          <code>{resultResponse?.[2] ?JSON.stringify(resultResponse?.[2]) : ""}</code> <br/>
+          <code>{resultResponse?.fault ?JSON.stringify(resultResponse?.fault) : ""}</code> <br/>
           <b>inFlight:</b>
           <code>{JSON.stringify(apiGetter?.inFlight)}</code> <br/>
           <b>url:</b>
@@ -124,9 +124,9 @@ function App() {
           <b>RESP:</b> <br/>
           <code>{apiPoster?.RESP ? JSON.stringify(apiPoster?.RESP) : ''}</code> <br/>
           <b>error:</b>
-          <code>{apiPoster?.RESP ? JSON.stringify(apiPoster?.error) : ''}</code> <br/>
+          <code>{apiPoster?.error ? JSON.stringify(apiPoster?.error) : ''}</code> <br/>
           <b>fault:</b>
-          <code>{apiPoster?.RESP ? JSON.stringify(apiPoster?.fault) : ''}</code> <br/>
+          <code>{apiPoster?.fault ? JSON.stringify(apiPoster?.fault) : ''}</code> <br/>
           <b>inFlight:</b>
           <code>{JSON.stringify(apiPoster?.inFlight)}</code> <br/>
           <b>url:</b>
@@ -149,9 +149,9 @@ function App() {
           <b>RESP:</b> <br/>
           <code>{apiDownloader?.RESP ? JSON.stringify(apiDownloader?.RESP) : ''}</code> <br/>
           <b>error:</b>
-          <code>{apiDownloader?.RESP ? JSON.stringify(apiDownloader?.error) : ''}</code> <br/>
+          <code>{apiDownloader?.error ? JSON.stringify(apiDownloader?.error) : ''}</code> <br/>
           <b>fault:</b>
-          <code>{apiDownloader?.RESP ? JSON.stringify(apiDownloader?.fault) : ''}</code> <br/>
+          <code>{apiDownloader?.fault ? JSON.stringify(apiDownloader?.fault) : ''}</code> <br/>
           <b>inFlight:</b>
           <code>{JSON.stringify(apiDownloader?.inFlight)}</code> <br/>
           <b>url:</b>
@@ -187,9 +187,9 @@ function App() {
           <b>RESP:</b> <br/>
           <code>{apiUploader?.RESP ? JSON.stringify(apiUploader?.RESP) : ''}</code> <br/>
           <b>error:</b>
-          <code>{apiUploader?.RESP ? JSON.stringify(apiUploader?.error) : ''}</code> <br/>
+          <code>{apiUploader?.error ? JSON.stringify(apiUploader?.error) : ''}</code> <br/>
           <b>fault:</b>
-          <code>{apiUploader?.RESP ? JSON.stringify(apiUploader?.fault) : ''}</code> <br/>
+          <code>{apiUploader?.fault ? JSON.stringify(apiUploader?.fault) : ''}</code> <br/>
           <b>inFlight:</b>
           <code>{JSON.stringify(apiUploader?.inFlight)}</code> <br/>
           <b>url:</b>
