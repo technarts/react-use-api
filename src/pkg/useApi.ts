@@ -46,10 +46,20 @@ export default function useApi<T>(params: Params) {
     try {
       const response = await fetch(url, options)
         .then(r => params.responseGuard?.(r, { url, headers, payload: callParams?.payload }) || Promise.resolve(r))
-        .then(r => ({
-          ok: r.ok,
-          data: params.method === "DOWNLOAD" && r.ok ? r.blob() : r.json(),
-        }));
+        .then(r =>
+          params.method === "DOWNLOAD" && r.ok
+            ? r.blob().then(data => ({ ok: r.ok, data }))
+            : r.clone().text().then(text => {
+                const isJSON = r.headers.get("Content-Type")?.includes("application/json");
+                let data;
+                try {
+                  data = text && isJSON ? JSON.parse(text) : text || null;
+                } catch {
+                  data = text;
+                }
+                return { ok: r.ok, data };
+              })
+        )
 
       if (response.ok)
         result.resp = await response.data;
