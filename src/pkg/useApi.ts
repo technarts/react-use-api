@@ -21,7 +21,17 @@ export default function useApi<T>(params: Params) {
   // Is there an ongoing request?:
   const [inFlight, setInFlight] = React.useState(false);
 
+  const abortControllerRef = React.useRef<AbortController | null>(null);
+  const abort = () => {
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
+  };
+
   const call = async (callParams?: CallParams) => {
+
+    abortControllerRef.current = new AbortController();
+
     setInFlight(true);
     const result: CallResult<T> = { resp: null, error: null, fault: null };
 
@@ -41,7 +51,7 @@ export default function useApi<T>(params: Params) {
     else if (method === "DOWNLOAD" && !body)
       method = "GET";
 
-    const options = { method, headers, body, credentials };
+    const options = { method, headers, body, credentials, signal: abortControllerRef.current.signal };
 
     try {
       const response = await fetch(url, options)
@@ -80,6 +90,7 @@ export default function useApi<T>(params: Params) {
       const result = call(params);
       resolve(result);
     }),
+    abort,
   } as ApiCounsel<T>;
 }
 

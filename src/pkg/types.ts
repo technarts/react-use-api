@@ -32,5 +32,6 @@ export type ApiCounsel<T> = {
   fault: any,
   call: (callParams?: CallParams) => Promise<CallResult<T>>,
   url: string,
+  abort: () => void,
 }
 
